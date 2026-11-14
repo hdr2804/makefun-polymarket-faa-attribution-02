@@ -62,7 +62,8 @@ def forecast_market(prices, horizon, quantiles):
     hq = horizon_quantiles(hist, quantiles)
     rows = []
     for h in range(1, horizon + 1):
-        # find the bracketing grid horizons for sqrt interpolation
+        # bracket minute h between grid horizons and interpolate in
+        # sqrt(h): price travel grows with the square root of time
         if not hq:
             emp = [0.0] * len(quantiles)
         elif h <= min(hq):
